@@ -2,4 +2,48 @@
 
 {% block title %}Catalog of books{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+<div class="row g-4">
+    <div class="col-md-7">
+        <h2 class="mb-3">List of saved books</h2>
+        <div class="list-group shadow-sm">
+            {% for book in books %}
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3">
+                    <div>
+                        <h5 class="mb-1 text-dark">{{ book.title }}</h5>
+                        <p class="mb-0 text-muted">Author: <strong>{{ book.author }}</strong></p>
+                    </div>
+                    <span class="badge bg-info text-dark rounded-pill">{{ book.category }}</span>
+                </div>
+            {% else %}
+                <div class="list-group-item text-center py-4 text-muted">
+                    There are no books in the catalog yet.
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h3 class="card-title mb-3">Add a new book</h3>
+                <form action="{{ url_for('add_book') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Name of book</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter book's title..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author:</label>
+                        <input type="text" class="form-control" id="author" name="author" placeholder="Enter book's author..." required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category:</label>
+                        <input type="text" class="form-control" id="category" name="category" placeholder="Enter book's category...">
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
