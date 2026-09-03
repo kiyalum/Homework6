@@ -2,4 +2,18 @@
 
 {% block title %}Main — info of app{% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+    <div class="container-fluid py-3">
+        <h1 class="display-5 fw-bold text-primary">Welcome to my website!</h1>
+        <p class="col-md-8 fs-4 text-muted">
+            This is an educational Flask application with styling using the Bootstrap.
+        </p>
+        <hr class="my-4">
+        <p>In this app, you can browse a catalog of recommended literature and add your own books.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('show_books') }}" role="button">
+            View catalog →
+        </a>
+    </div>
+</div>
+{% endblock %}
